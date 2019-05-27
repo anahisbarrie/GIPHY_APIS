@@ -1,0 +1,16 @@
+.container {
+ background: rgb(255, 231, 235);
+ margin-left: 20px;
+ margin-right: 40px;
+width: 100%;
+
+}
+
+footer {
+    margin-top: 10px;
+    
+
+    text-align:center;
+    font-size: 0.5rem;
+    
+}
