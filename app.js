@@ -35,11 +35,39 @@ function displayButtons() {
     }
 }
 
-displayButtons()
-
 // Function to clear page and add new Giphy 
+function addNewGiphyButton() {
+    $("#addGiphy").on("click", function () {
+        var action = $("#action-input").val().trim();
+        topics.push(action);
+        displayButtons();
+        return false;
+    })
+}
 
 // Function to remove Giphy 
+
+function removeGiphy(){
+    $("#removeGif").on("click", function(){
+        topics.pop();
+        displayButtons();
+        return false;
+    });
+}
+
+displayButtons();
+addNewGiphyButton();
+removeGiphy();
+
+// function to display the giphy pictures with animation
+
+
+
+
+
+
+
+
 
 // Function to Stop animation when click on the picture 
 
