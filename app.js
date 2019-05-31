@@ -25,19 +25,37 @@ function showGiphys(NewGiphy) {
   
 
         for (var i = 0; i < results.length; i++) {
-            var giphyImage = $("<img>");
+
+            Rate = $("<div>")
+            giphyrate = $("<div>");
+            giphyrate.addClass("rate")
+            giphyrate.attr("rating", results[i].images.rating);
+            var p = $("<p>").text("Rating: " + results[i].images.rating);
+            Rate.append(giphyrate);
+
+console.log(giphyrate);
+
+
+
+            var giphyImage = $("<img heigh= '250px' width='250px'>");
             var giphyDiv = $("<div>");
+            var gif = results[i].images.original.url
+            var gifImg = results[i].images.original_still.url
             
             // add class to  all images
             giphyImage.addClass("gif");
             // add attributes requested 
-            giphyImage.attr("src", results[i].images.fixed_height_small.url);
-            giphyImage.attr("data-original", results[i].images.original.url);
-            giphyImage.attr("data-animate", results[i].images.fixed_height.url);
+            giphyImage.attr("src", gifImg);
+            giphyImage.attr("data-still", gifImg);
+            giphyImage.attr("data-animate", gif);
+            giphyImage.attr("data-state", "still");
+            giphyImage.attr("class", "gif");
+
+
 
             //append inserts a content at the end of a selected element 
             giphyDiv.append(giphyImage);
-            giphyDiv.append('<br><a href="' + results[i].images.original.url);
+            // giphyDiv.append('<br><a href="' + results[i].images.original.url);
             giphyDiv.append('<br>');
            
             $(".Giphs-View").prepend(giphyDiv); //.prepend insert content specified by parameter
@@ -85,8 +103,51 @@ function removeGiphy() {
     });
 }
 
+// Function to Stop animation when click on the picture 
+
+// LISTEN FOR GIF CLICK TO MAKE MOVE (OR STILL)
+$(document).on("click",".gif", function () {
+    // The attr jQuery method allows us to get or set the value of any attribute on our HTML element
+    var state = $(this).attr("data-state");
+    // If the clicked image's state is still, update its src attribute to what its data-animate value is.
+    // Then, set the image's data-state to animate
+    // Else set src to the data-still value
+    if (state === "still") {
+        $(this).attr("src", $(this).attr("data-animate"));
+        $(this).attr("data-state", "animate");
+    } else {
+        $(this).attr("src", $(this).attr("data-still"));
+        $(this).attr("data-state", "still");
+    }
+});
+
+// // add class to  all images
+// giphyImage.addClass("gif");
+// // add attributes requested 
+// giphyImage.attr("src", gif);
+// giphyImage.attr("data-animate", gif);
+// giphyImage.attr("data-image", gifImg);
+    // *
+    // * gif
+    // * img
+    // *
+    // * src -> gif
+    // *
+    // * img src=gif data-img="img" data-gif="gif"
+    // *
+    // * onClick -> src=?
+    // * 
+    // * if src == data-img
+    // *  src = data-gif
+    // * else
+    // *  src = data-img
+    // */
+
+        // var src = $(this).attr('src')
+        // console.log(src)
+
+
+
 displayButtons();
 addNewGiphyButton();
 removeGiphy();
-
-// Function to Stop animation when click on the picture 
