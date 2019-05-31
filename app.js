@@ -3,9 +3,7 @@
 $(document).on("click", ".action", function (event) {
     event.preventDefault(); // everytime if you have a form with type submit 
      var NewGiphy = $(this).attr("data-name");
-
     console.log(NewGiphy);
-
     showGiphys(NewGiphy)
 });
 
@@ -26,15 +24,15 @@ function showGiphys(NewGiphy) {
 
         for (var i = 0; i < results.length; i++) {
 
+            // Se solicita mostrar el rating de las imagen. Se crea un nuevo <div>, se agrega el attribute con el link especifico de acuerdo a la data, se inserta con el .append en el html, y tambien se muestra .prepend en el espacio determinado que se quiere mostrar. 
             Rate = $("<div>")
             giphyrate = $("<div>");
             giphyrate.addClass("rate")
-            giphyrate.attr("rating", results[i].images.rating);
-            var p = $("<p>").text("Rating: " + results[i].images.rating);
+            giphyrate.attr("rating", results[i].rating);
+            var p = $("<p>").text("Rating: " + results[i].rating.toUpperCase());
             Rate.append(giphyrate);
-
-console.log(giphyrate);
-
+            Rate.append(p);
+            console.log(giphyrate);
 
 
             var giphyImage = $("<img heigh= '250px' width='250px'>");
@@ -48,27 +46,26 @@ console.log(giphyrate);
             giphyImage.attr("src", gifImg);
             giphyImage.attr("data-still", gifImg);
             giphyImage.attr("data-animate", gif);
-            giphyImage.attr("data-state", "still");
+            giphyImage.attr("today", "tomorrow");
             giphyImage.attr("class", "gif");
-
-
 
             //append inserts a content at the end of a selected element 
             giphyDiv.append(giphyImage);
             // giphyDiv.append('<br><a href="' + results[i].images.original.url);
             giphyDiv.append('<br>');
            
+            
+            $(".Giphs-View").prepend(Rate); 
             $(".Giphs-View").prepend(giphyDiv); //.prepend insert content specified by parameter
 
         }
-        $(".Giphs-View").prepend($("<p>Testing</p>"));
+        $(".Giphs-View").prepend($("<p>*Click on image to see animation*</p>"));
     });
     }
 
-var topics = ["shoes", "dogs", "people", "bags", "happy", "italian"]
+var topics = ["shoes", "dogs", "people", "bags", "happy", "italian", "classes", "coding", "sumer", "spring"]
 
 // Function that creates initial buttons from the topics array
-
 function displayButtons() {
     $(".Current-Giphs").empty();
 
@@ -94,7 +91,6 @@ function addNewGiphyButton() {
 }
 
 // Function to remove Giphy 
-
 function removeGiphy() {
     $("#removeGif").on("click", function () {
         topics.pop();
@@ -102,50 +98,19 @@ function removeGiphy() {
         return false;
     });
 }
-
-// Function to Stop animation when click on the picture 
-
-// LISTEN FOR GIF CLICK TO MAKE MOVE (OR STILL)
+// LISTEN FOR GIF CLICK: Se crea un attribute momentaneo para intercambiar el source when click. El attribute puede tener cualquier nombre con cualquier valor.
 $(document).on("click",".gif", function () {
     // The attr jQuery method allows us to get or set the value of any attribute on our HTML element
-    var state = $(this).attr("data-state");
-    // If the clicked image's state is still, update its src attribute to what its data-animate value is.
-    // Then, set the image's data-state to animate
-    // Else set src to the data-still value
-    if (state === "still") {
+    var x = $(this).attr("today");
+    // var x = "tomorrow" -- it is the same than line 106
+    if (x === "tomorrow") {
         $(this).attr("src", $(this).attr("data-animate"));
-        $(this).attr("data-state", "animate");
+        $(this).attr("today", "yesterday");
     } else {
         $(this).attr("src", $(this).attr("data-still"));
-        $(this).attr("data-state", "still");
+        $(this).attr("today", "tomorrow");
     }
 });
-
-// // add class to  all images
-// giphyImage.addClass("gif");
-// // add attributes requested 
-// giphyImage.attr("src", gif);
-// giphyImage.attr("data-animate", gif);
-// giphyImage.attr("data-image", gifImg);
-    // *
-    // * gif
-    // * img
-    // *
-    // * src -> gif
-    // *
-    // * img src=gif data-img="img" data-gif="gif"
-    // *
-    // * onClick -> src=?
-    // * 
-    // * if src == data-img
-    // *  src = data-gif
-    // * else
-    // *  src = data-img
-    // */
-
-        // var src = $(this).attr('src')
-        // console.log(src)
-
 
 
 displayButtons();

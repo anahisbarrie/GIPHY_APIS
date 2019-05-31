@@ -1,50 +1,6 @@
-<!-- 
-1. Before you can make any part of your site work, you need to create an array of strings, each one related to a topic that
-interests you. Save it to a variable called topics.
-
-2. We chose animals for our theme, but you can make a list to your own liking.
-
-3. Your app should take the topics in this array and create buttons in your HTML.
-
-4. Try using a loop that appends a button for each string in the array.
-
-5. When the user clicks on a button, the page should grab 10 static, non-animated gif images from the GIPHY API and place
-them on the page.
-
-
-6.When the user clicks one of the still GIPHY images, the gif should animate. If the user clicks the gif again, it should
-stop playing.
-
-
-7. Under every gif, display its rating (PG, G, so on).
-
-8. This data is provided by the GIPHY API.
-Only once you get images displaying with button presses should you move on to the next step.
-
-9. Add a form to your page that takes a value from a user input box and adds it to your topics array. Then make a function
-call that takes each topic in the array and remakes the buttons on the page.
-
-10. Deploy your assignment to Github Pages.
-
-Bonus Goals
-
-Ensure your app is fully mobile responsive.
-Allow users to request additional gifs to be added to the page.
-Each request should ADD 10 gifs to the page, NOT overwrite the existing gifs.
-List additional metadata (title, tags, etc) for each gif in a clean and readable format.
-
-Integrate this search with additional APIs such as OMDB, or Bands in Town. Be creative and build something you are proud
-to showcase in your portfolio
-
-Allow users to add their favorite gifs to a favorites section.
-
-This should persist even when they select or add a new topic.
-If you are looking for a major challenge, look into making this section persist even when the page is reloaded(via
-localStorage or cookies). -->
-
-
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -52,47 +8,43 @@ localStorage or cookies). -->
     <title>Giphy Apis</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-        <link rel="stylesheet" href="style.css" >
-    
-</head>
-<body>
+    <link rel="stylesheet" href="style.css">
 
-        <div class="container">
+</head>
+
+<body>
+    <div class="container rounded mx-auto d-block">
 
         <div class="Search">
+            <div>
+                <h1 class="mx-5">What's in your mind today?<img src="animation.gif" width="80px"></h1>
+            </div>
             <label for="action-input">Add your new Giphs below</label>
             <input type="text" id="action-input">
             <input id="addGiphy" type="submit" value="Add Giphy" class="btn btn-primary">
-        <input id="removeGif" type="submit" value="Remove Giphy" class="btn btn-primary">
+            <input id="removeGif" type="submit" value="Remove Giphy" class="btn btn-primary">
         </div>
 
-            <p>Current Gifts:</p>
-            <div class="Current-Giphs" id = "giftview" >  
+        <!-- <p>Current Gifts:</p> -->
+        <div class="Current-Giphs" id="giftview">
 
-            </div>
-            <div class="Giphs-View">
+        </div>
+        <div class="Giphs-View">
 
+        </div>
+        <div class="rating-view">
 
-            </div>
-            <div class="rating-view">
-            
-            
-            </div>
+        </div>
+        <!-- <button class = "action btn btn-primary" data-name="shoes">shoes</button> -->
+    </div>
 
-    <!-- <button class = "action btn btn-primary" data-name="shoes">shoes</button> -->
-   
-       
-     </div>
 
     <footer>
-        <div id="footer" class="container">
+        <div id="footer" class="container rounded mx-auto d-block">
             <p id="copyright">&copy; Copyright 2019 Anahis Barrie</p>
         </div>
     </footer>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script type="text/javascript" src="app.js">
-
-
-    </script>
+    <script type="text/javascript" src="app.js"></script>
 </body>
 </html>
